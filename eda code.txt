@@ -1,0 +1,147 @@
+#package installing
+install.packages("tidyverse")
+library(tidyverse)
+
+install.packages("caret")
+library(caret)
+
+install.packages("RCurl")
+library(RCurl)
+
+install.packages("skimr")
+library(skimr)
+
+#importing .csv into global enviroment
+data <- read.csv("insurance.csv")
+
+#view data
+head(data)
+tail(data)
+View(data)
+str(data)
+
+#extracting copmponents of dataframe
+data[1,4]
+data[,4]
+data$age
+
+#dimenstion of dataset
+dim(data)
+
+#list the datatype of each attribute
+sapply(data,class)
+
+#check wheather there is null value
+sum(is.na(data))
+
+#sumarize
+summary(data)
+
+#displaying detailed summary statistics
+skim(data)
+
+#group data by index
+data %>%
+  dplyr::group_by(age)%>%
+  skim()
+
+#create validation set
+validation <- createDataPartition(data$age,p=0.50,list=FALSE)
+validation50 <-data[-validation,]
+
+data<-data[validation,]
+view(data)
+
+#input and output
+x<-data[,2:3]
+view(x)
+y<-data[,2]
+view(y)
+
+#plots
+boxplot(x[,2],main=names(data)[1],ylab="age")
+boxplot(x[,2],main=names(data)[3],ylab="sex")
+
+#for all attribute
+par (mfrow=c(1,1))
+for(i in 1:1)
+{
+  boxplot(x[,i],main=names(data)[i])
+}
+
+library(caret)
+plot(x)
+
+#scatter plot
+library(caret)
+featurePlot(x=x,y=y)
+
+install.packages("ellipse")
+library(ellipse)
+library(caret)
+featurePlot(x=x,y=y,plot ="ellipse")
+
+#box plots
+library(caret)
+featurePlot(x=x,y=y,plot="box")
+
+#density plot
+scales<-list(x=list(relation="free"),y=list(relation="free"))
+
+scales<-list(x=list(relation="free"),y=list(relation="free"))
+featurePlot(x=x,y=y,plot = "density",scales=scales)
+
+#barplot
+counts<-table(data$Age)
+barplot(counts)
+barplot(counts,horiz=TRUE)
+barplot(counts,
+        main="Barplot",xlab="open",legend=rownames(counts),col=c("red","yellow","green"))
+
+#barplot
+counts<-table(data$age)
+barplot(counts)
+barplot(counts,horiz=TRUE)
+barplot(counts,
+        main="Barplot",xlab="open",legend=rownames(counts),col=c("red","yellow","green"))
+
+#boxplot
+bwplot(~age,data=data,main="boxplots")
+library("caret")
+
+#High
+bwplot(~age|sex,data=data,main="boxplots")
+
+#hisogram
+install.packages("lattice")
+library(lattice)
+histogram(~age,data = data,main="histogram")
+histogram(~bmi,data = data,main="histogram")
+
+#scatter
+xyplot(age~bmi,data=data,main="Scatterplot")
+
+#barchart
+barchart(~age,data=data,main="Barchart")
+barchart(~bmi,data=data,main="Barchart")
+
+#densityplot
+densityplot(~age,data=data)
+densityplot(~bmi,data=data)
+
+#piechart
+install.packages("plotrix")
+library(plotrix)
+slices<-c("age")
+lbls<-c("bmi")
+pie(slices,labels=lbls,main="Piecharts")
+
+#ggplot
+library(ggplot2)
+library(grid)
+library(gridExtra)
+(plot1<-ggplot(data=data,mapping=aes(x=age,y=bmi))+geom_boxplot())
+ggplot(data=data,mapping=aes(x=age,y=bmi))+geom_boxplot(notch = TRUE,outlier.colour = "green",outlier.size = 3)
+
+#modify
+ggplot(data=data,mapping=aes(x=bmi,y=age,colour=bmi))+geom_point()+facet_grid(~age)

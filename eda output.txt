@@ -1,0 +1,1000 @@
+The following object is masked from ‘package:purrr’:
+
+    lift
+
+> install.packages("RCurl")
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing package into ‘C:/Users/Dell/Documents/R/win-library/4.1’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘bitops’
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/bitops_1.0-7.zip'
+Content type 'application/zip' length 42470 bytes (41 KB)
+downloaded 41 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/RCurl_1.98-1.3.zip'
+Content type 'application/zip' length 3072176 bytes (2.9 MB)
+downloaded 2.9 MB
+
+package ‘bitops’ successfully unpacked and MD5 sums checked
+package ‘RCurl’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\Dell\AppData\Local\Temp\RtmpOYryML\downloaded_packages
+> library(RCurl)
+
+Attaching package: ‘RCurl’
+
+The following object is masked from ‘package:tidyr’:
+
+    complete
+
+> install.packages("skimr")
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing package into ‘C:/Users/Dell/Documents/R/win-library/4.1’
+(as ‘lib’ is unspecified)
+also installing the dependency ‘repr’
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/repr_1.1.3.zip'
+Content type 'application/zip' length 122310 bytes (119 KB)
+downloaded 119 KB
+
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/skimr_2.1.3.zip'
+Content type 'application/zip' length 1238251 bytes (1.2 MB)
+downloaded 1.2 MB
+
+package ‘repr’ successfully unpacked and MD5 sums checked
+package ‘skimr’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\Dell\AppData\Local\Temp\RtmpOYryML\downloaded_packages
+> library(skimr)
+> #importing .csv into global enviroment
+> data <- read.csv("insurance.csv")
+Error in file(file, "rt") : cannot open the connection
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file 'insurance.csv': No such file or directory
+> 
+> #importing .csv into global enviroment
+> data <- read.csv("insurance.csv")
+> #view data
+> head(data)
+  age    sex    bmi children smoker    region   charges
+1  19 female 27.900        0    yes southwest 16884.924
+2  18   male 33.770        1     no southeast  1725.552
+3  28   male 33.000        3     no southeast  4449.462
+4  33   male 22.705        0     no northwest 21984.471
+5  32   male 28.880        0     no northwest  3866.855
+6  31 female 25.740        0     no southeast  3756.622
+> tail(data)
+     age    sex   bmi children smoker    region   charges
+1333  52 female 44.70        3     no southwest 11411.685
+1334  50   male 30.97        3     no northwest 10600.548
+1335  18 female 31.92        0     no northeast  2205.981
+1336  18 female 36.85        0     no southeast  1629.833
+1337  21 female 25.80        0     no southwest  2007.945
+1338  61 female 29.07        0    yes northwest 29141.360
+> View(data)
+> str(data)
+'data.frame':	1338 obs. of  7 variables:
+ $ age     : int  19 18 28 33 32 31 46 37 37 60 ...
+ $ sex     : chr  "female" "male" "male" "male" ...
+ $ bmi     : num  27.9 33.8 33 22.7 28.9 ...
+ $ children: int  0 1 3 0 0 0 1 3 2 0 ...
+ $ smoker  : chr  "yes" "no" "no" "no" ...
+ $ region  : chr  "southwest" "southeast" "southeast" "northwest" ...
+ $ charges : num  16885 1726 4449 21984 3867 ...
+> #extracting copmponents of dataframe
+> data[1,4]
+[1] 0
+> data[,4]
+   [1] 0 1 3 0 0 0 1 3 2 0 0 0 0 0 0 1 1 0 0 0 0 1 0 1 2 3 0 2 1 2 0 0 5 0 1 0 3 0 1 0 0 2 1 2 1 0 2 0 0 1 0 2 1 0 3 2 2
+  [58] 2 1 2 3 4 1 1 0 0 2 1 0 3 0 5 3 1 2 0 1 0 0 0 1 0 1 4 2 2 0 0 0 0 0 1 3 2 2 1 3 0 0 0 0 0 0 3 1 1 1 2 0 0 1 2 0 0
+ [115] 3 0 0 1 0 2 2 0 0 1 3 0 0 0 2 2 0 0 2 0 0 0 0 0 3 0 2 1 2 2 3 3 3 1 1 1 1 0 3 0 1 0 0 0 0 3 0 0 1 2 0 4 5 3 1 3 0
+ [172] 0 0 1 0 0 2 1 2 3 0 0 3 0 2 3 2 3 1 2 0 0 0 1 0 0 0 2 0 0 0 1 0 0 0 1 0 2 0 1 1 4 2 1 2 2 0 0 1 0 1 0 3 0 0 3 0 0
+ [229] 1 2 1 3 0 1 2 2 0 2 0 1 2 1 1 3 0 0 0 0 1 1 2 2 2 3 0 3 0 0 4 0 0 1 3 0 3 3 1 3 1 1 1 2 2 1 0 2 2 0 2 1 1 3 1 1 0
+ [286] 1 2 0 1 3 0 1 2 0 3 0 0 1 3 1 3 3 2 2 2 2 2 1 0 2 0 0 3 0 0 0 0 0 0 1 1 4 0 0 0 1 1 2 1 0 1 0 0 0 2 0 0 1 1 1 0 0
+ [343] 0 0 4 3 2 1 1 0 0 0 0 0 0 0 3 3 0 0 2 1 0 1 2 1 3 2 2 3 0 0 1 2 0 0 3 0 3 1 2 0 0 2 2 0 0 2 0 3 4 0 1 1 2 0 3 0 2
+ [400] 0 0 1 0 3 0 2 0 1 3 1 0 1 2 5 0 1 0 2 1 0 0 0 1 0 2 5 1 0 1 3 0 2 0 0 1 3 0 3 5 0 1 0 0 1 1 0 0 0 0 1 4 1 0 0 2 0
+ [457] 2 0 0 3 3 0 2 0 0 1 1 2 1 1 0 0 0 0 3 1 0 0 0 0 3 2 0 1 3 0 3 0 0 1 0 0 0 0 4 0 2 2 2 0 0 0 1 0 1 3 1 2 0 0 1 0 0
+ [514] 0 1 0 1 2 1 0 0 0 0 0 1 0 2 1 1 0 1 0 2 0 0 1 3 2 1 0 3 2 0 0 0 2 0 2 0 0 0 0 0 2 0 2 1 0 3 0 2 0 0 1 2 0 1 2 5 2
+ [571] 0 1 2 1 2 0 0 1 1 0 1 0 2 1 0 1 3 1 0 1 0 1 2 1 0 1 2 1 2 2 0 0 0 3 0 0 0 0 2 2 1 2 0 3 0 1 0 2 0 0 1 4 1 0 0 0 3
+ [628] 1 0 0 1 0 0 2 1 0 1 2 0 4 5 3 0 3 2 3 1 3 0 0 2 1 0 2 0 2 1 2 1 4 3 1 1 0 0 2 1 2 0 1 3 0 0 0 2 0 3 3 3 2 1 0 2 0
+ [685] 1 2 2 0 1 1 0 1 1 0 1 0 2 1 0 2 0 0 0 1 1 2 0 3 3 0 1 2 2 0 0 0 1 1 2 0 0 3 0 0 1 3 1 1 0 1 3 1 3 1 3 1 0 2 3 2 2
+ [742] 0 0 0 0 1 2 0 1 0 0 0 0 0 4 2 3 0 3 0 2 1 1 0 2 0 1 1 0 2 3 2 0 0 2 3 2 0 3 0 3 0 1 1 1 3 0 0 3 0 0 0 0 0 2 0 2 1
+ [799] 0 0 1 0 1 0 0 0 1 0 0 1 3 3 2 2 2 0 0 3 1 0 1 0 0 2 0 2 2 1 3 1 0 0 2 0 1 2 0 0 2 0 0 0 2 0 0 0 1 1 0 0 0 2 0 2 3
+ [856] 0 0 0 1 0 2 3 2 0 0 2 0 1 0 3 0 1 0 1 3 0 1 5 1 2 3 1 0 3 4 1 0 0 0 1 0 4 0 2 0 0 2 1 0 0 0 0 3 0 0 2 3 1 3 0 1 0
+ [913] 3 1 2 0 0 0 0 1 0 0 1 0 0 2 2 1 0 1 1 1 5 0 2 0 2 5 2 0 0 1 0 0 0 1 2 1 0 3 0 2 1 2 1 1 1 1 1 1 1 0 1 3 2 1 2 1 2
+ [970] 5 3 0 0 0 0 0 0 1 3 0 1 0 3 1 5 1 3 1 0 0 1 2 2 1 3 3 3 0 3 0
+ [ reached getOption("max.print") -- omitted 338 entries ]
+> data$age
+   [1] 19 18 28 33 32 31 46 37 37 60 25 62 23 56 27 19 52 23 56 30 60 30 18 34 37 59 63 55 23 31 22 18 19 63 28 19 62 26
+  [39] 35 60 24 31 41 37 38 55 18 28 60 36 18 21 48 36 40 58 58 18 53 34 43 25 64 28 20 19 61 40 40 28 27 31 53 58 44 57
+  [77] 29 21 22 41 31 45 22 48 37 45 57 56 46 55 21 53 59 35 64 28 54 55 56 38 41 30 18 61 34 20 19 26 29 63 54 55 37 21
+ [115] 52 60 58 29 49 37 44 18 20 44 47 26 19 52 32 38 59 61 53 19 20 22 19 22 54 22 34 26 34 29 30 29 46 51 53 19 35 48
+ [153] 32 42 40 44 48 18 30 50 42 18 54 32 37 47 20 32 19 27 63 49 18 35 24 63 38 54 46 41 58 18 22 44 44 36 26 30 41 29
+ [191] 61 36 25 56 18 19 39 45 51 64 19 48 60 27 46 28 59 35 63 40 20 40 24 34 45 41 53 27 26 24 34 53 32 19 42 55 28 58
+ [229] 41 47 42 59 19 59 39 40 18 31 19 44 23 33 55 40 63 54 60 24 19 29 18 63 54 27 50 55 56 38 51 19 58 20 52 19 53 46
+ [267] 40 59 45 49 18 50 41 50 25 47 19 22 59 51 40 54 30 55 52 46 46 63 59 52 28 29 25 22 25 18 19 47 31 48 36 53 56 28
+ [305] 57 29 28 30 58 41 50 19 43 49 27 52 50 54 44 32 34 26 34 57 29 40 27 45 64 52 61 52 61 56 43 64 60 62 50 46 24 62
+ [343] 60 63 49 34 33 46 36 19 57 50 30 33 18 46 46 47 23 18 48 35 19 21 21 49 56 42 44 18 61 57 42 26 20 23 39 24 64 62
+ [381] 27 55 55 35 44 19 58 50 26 24 48 19 48 49 46 46 43 21 64 18 51 47 64 49 31 52 33 47 38 32 19 44 26 25 19 43 52 36
+ [419] 64 63 64 61 40 25 48 45 38 18 21 27 19 29 42 60 31 60 22 35 52 26 31 33 18 59 56 45 60 56 40 35 39 30 24 20 32 59
+ [457] 55 57 56 40 49 42 62 56 19 30 60 56 28 18 27 18 19 47 54 61 24 25 21 23 63 49 18 51 48 31 54 19 44 53 19 61 18 61
+ [495] 21 20 31 45 44 62 29 43 51 19 38 37 22 21 24 57 56 27 51 19 39 58 20 45 35 31 50 32 51 38 42 18 19 51 46 18 57 62
+ [533] 59 37 64 38 33 46 46 53 34 20 63 54 54 49 28 54 25 43 63 32 62 52 25 28 46 34 35 19 46 54 27 50 18 19 38 41 49 48
+ [571] 31 18 30 62 57 58 22 31 52 25 59 19 39 32 19 33 21 34 61 38 58 47 20 21 41 46 42 34 43 52 18 51 56 64 19 51 27 59
+ [609] 28 30 47 38 18 34 20 47 56 49 19 55 30 37 49 18 59 29 36 33 58 44 53 24 29 40 51 64 19 35 39 56 33 42 61 23 43 48
+ [647] 39 40 18 58 49 53 48 45 59 52 26 27 48 57 37 57 32 18 64 43 49 40 62 40 30 29 36 41 44 45 55 60 56 49 21 19 39 53
+ [685] 33 53 42 40 47 27 21 47 20 24 27 26 53 41 56 23 21 50 53 34 47 33 51 49 31 36 18 50 43 20 24 60 49 60 51 58 51 53
+ [723] 62 19 50 30 41 29 18 41 35 53 24 48 59 49 37 26 23 29 45 27 53 31 50 50 34 19 47 28 37 21 64 58 24 31 39 47 30 18
+ [761] 22 23 33 27 45 57 47 42 64 38 61 53 44 19 41 51 40 45 35 53 30 18 51 50 31 35 60 21 29 62 39 19 22 53 39 27 30 30
+ [799] 58 33 42 64 21 18 23 45 40 19 18 25 46 33 54 28 36 20 24 23 47 33 45 26 18 44 60 64 56 36 41 39 63 36 28 58 36 42
+ [837] 36 56 35 59 21 59 23 57 53 60 51 23 27 55 37 61 46 53 49 20 48 25 25 57 37 38 55 36 51 40 18 57 61 25 50 26 42 43
+ [875] 44 23 49 33 41 37 22 23 21 51 25 32 57 36 22 57 64 36 54 47 62 61 43 19 18 19 49 60 26 49 60 26 27 44 63 32 22 18
+ [913] 59 44 33 24 43 45 61 35 62 62 38 34 43 50 19 57 62 41 26 39 46 45 32 59 44 39 18 53 18 50 18 19 62 56 42 37 42 25
+ [951] 57 51 30 44 34 31 54 24 43 48 19 29 63 46 52 35 51 44 21 39 50 34 22 19 26 29 48 26 45 36 54 34 31 27 20 44 43 45
+ [989] 34 24 26 38 50 38 27 39 39 63 33 36
+ [ reached getOption("max.print") -- omitted 338 entries ]
+> #dimenstion of dataset
+> dim(data)
+[1] 1338    7
+> #list the datatype of each attribute
+> sapply(data,class)
+        age         sex         bmi    children      smoker      region     charges 
+  "integer" "character"   "numeric"   "integer" "character" "character"   "numeric" 
+> #check wheather there is null value
+> sum(is.na(data))
+[1] 0
+> #sumarize
+> summary(data)
+      age            sex                 bmi           children        smoker             region         
+ Min.   :18.00   Length:1338        Min.   :15.96   Min.   :0.000   Length:1338        Length:1338       
+ 1st Qu.:27.00   Class :character   1st Qu.:26.30   1st Qu.:0.000   Class :character   Class :character  
+ Median :39.00   Mode  :character   Median :30.40   Median :1.000   Mode  :character   Mode  :character  
+ Mean   :39.21                      Mean   :30.66   Mean   :1.095                                        
+ 3rd Qu.:51.00                      3rd Qu.:34.69   3rd Qu.:2.000                                        
+ Max.   :64.00                      Max.   :53.13   Max.   :5.000                                        
+    charges     
+ Min.   : 1122  
+ 1st Qu.: 4740  
+ Median : 9382  
+ Mean   :13270  
+ 3rd Qu.:16640  
+ Max.   :63770  
+> #displaying detailed summary statistics
+> skim(data)
+-- Data Summary ------------------------
+                           Values
+Name                       data  
+Number of rows             1338  
+Number of columns          7     
+_______________________          
+Column type frequency:           
+  character                3     
+  numeric                  4     
+________________________         
+Group variables            None  
+
+-- Variable type: character ---------------------------------------------------------------------------------------------
+# A tibble: 3 x 8
+  skim_variable n_missing complete_rate   min   max empty n_unique whitespace
+* <chr>             <int>         <dbl> <int> <int> <int>    <int>      <int>
+1 sex                   0             1     4     6     0        2          0
+2 smoker                0             1     2     3     0        2          0
+3 region                0             1     9     9     0        4          0
+
+-- Variable type: numeric -----------------------------------------------------------------------------------------------
+# A tibble: 4 x 11
+  skim_variable n_missing complete_rate     mean       sd     p0    p25    p50     p75    p100 hist 
+* <chr>             <int>         <dbl>    <dbl>    <dbl>  <dbl>  <dbl>  <dbl>   <dbl>   <dbl> <chr>
+1 age                   0             1    39.2     14.0    18     27     39      51      64   ?????
+2 bmi                   0             1    30.7      6.10   16.0   26.3   30.4    34.7    53.1 ?????
+3 children              0             1     1.09     1.21    0      0      1       2       5   ?????
+4 charges               0             1 13270.   12110.   1122.  4740.  9382.  16640.  63770.  ?????
+> #group data by index
+> data %>%
++   dplyr::group_by(age)%>%
++   skim()
+-- Data Summary ------------------------
+                           Values    
+Name                       Piped data
+Number of rows             1338      
+Number of columns          7         
+_______________________              
+Column type frequency:               
+  character                3         
+  numeric                  3         
+________________________             
+Group variables            age       
+
+-- Variable type: character ---------------------------------------------------------------------------------------------
+# A tibble: 141 x 9
+    skim_variable   age n_missing complete_rate   min   max empty n_unique whitespace
+  * <chr>         <int>     <int>         <dbl> <int> <int> <int>    <int>      <int>
+  1 sex              18         0             1     4     6     0        2          0
+  2 sex              19         0             1     4     6     0        2          0
+  3 sex              20         0             1     4     6     0        2          0
+  4 sex              21         0             1     4     6     0        2          0
+  5 sex              22         0             1     4     6     0        2          0
+  6 sex              23         0             1     4     6     0        2          0
+  7 sex              24         0             1     4     6     0        2          0
+  8 sex              25         0             1     4     6     0        2          0
+  9 sex              26         0             1     4     6     0        2          0
+ 10 sex              27         0             1     4     6     0        2          0
+ 11 sex              28         0             1     4     6     0        2          0
+ 12 sex              29         0             1     4     6     0        2          0
+ 13 sex              30         0             1     4     6     0        2          0
+ 14 sex              31         0             1     4     6     0        2          0
+ 15 sex              32         0             1     4     6     0        2          0
+ 16 sex              33         0             1     4     6     0        2          0
+ 17 sex              34         0             1     4     6     0        2          0
+ 18 sex              35         0             1     4     6     0        2          0
+ 19 sex              36         0             1     4     6     0        2          0
+ 20 sex              37         0             1     4     6     0        2          0
+ 21 sex              38         0             1     4     6     0        2          0
+ 22 sex              39         0             1     4     6     0        2          0
+ 23 sex              40         0             1     4     6     0        2          0
+ 24 sex              41         0             1     4     6     0        2          0
+ 25 sex              42         0             1     4     6     0        2          0
+ 26 sex              43         0             1     4     6     0        2          0
+ 27 sex              44         0             1     4     6     0        2          0
+ 28 sex              45         0             1     4     6     0        2          0
+ 29 sex              46         0             1     4     6     0        2          0
+ 30 sex              47         0             1     4     6     0        2          0
+ 31 sex              48         0             1     4     6     0        2          0
+ 32 sex              49         0             1     4     6     0        2          0
+ 33 sex              50         0             1     4     6     0        2          0
+ 34 sex              51         0             1     4     6     0        2          0
+ 35 sex              52         0             1     4     6     0        2          0
+ 36 sex              53         0             1     4     6     0        2          0
+ 37 sex              54         0             1     4     6     0        2          0
+ 38 sex              55         0             1     4     6     0        2          0
+ 39 sex              56         0             1     4     6     0        2          0
+ 40 sex              57         0             1     4     6     0        2          0
+ 41 sex              58         0             1     4     6     0        2          0
+ 42 sex              59         0             1     4     6     0        2          0
+ 43 sex              60         0             1     4     6     0        2          0
+ 44 sex              61         0             1     4     6     0        2          0
+ 45 sex              62         0             1     4     6     0        2          0
+ 46 sex              63         0             1     4     6     0        2          0
+ 47 sex              64         0             1     4     6     0        2          0
+ 48 smoker           18         0             1     2     3     0        2          0
+ 49 smoker           19         0             1     2     3     0        2          0
+ 50 smoker           20         0             1     2     3     0        2          0
+ 51 smoker           21         0             1     2     3     0        2          0
+ 52 smoker           22         0             1     2     3     0        2          0
+ 53 smoker           23         0             1     2     3     0        2          0
+ 54 smoker           24         0             1     2     3     0        2          0
+ 55 smoker           25         0             1     2     3     0        2          0
+ 56 smoker           26         0             1     2     3     0        2          0
+ 57 smoker           27         0             1     2     3     0        2          0
+ 58 smoker           28         0             1     2     3     0        2          0
+ 59 smoker           29         0             1     2     3     0        2          0
+ 60 smoker           30         0             1     2     3     0        2          0
+ 61 smoker           31         0             1     2     3     0        2          0
+ 62 smoker           32         0             1     2     3     0        2          0
+ 63 smoker           33         0             1     2     3     0        2          0
+ 64 smoker           34         0             1     2     3     0        2          0
+ 65 smoker           35         0             1     2     3     0        2          0
+ 66 smoker           36         0             1     2     3     0        2          0
+ 67 smoker           37         0             1     2     3     0        2          0
+ 68 smoker           38         0             1     2     3     0        2          0
+ 69 smoker           39         0             1     2     3     0        2          0
+ 70 smoker           40         0             1     2     3     0        2          0
+ 71 smoker           41         0             1     2     3     0        2          0
+ 72 smoker           42         0             1     2     3     0        2          0
+ 73 smoker           43         0             1     2     3     0        2          0
+ 74 smoker           44         0             1     2     3     0        2          0
+ 75 smoker           45         0             1     2     3     0        2          0
+ 76 smoker           46         0             1     2     3     0        2          0
+ 77 smoker           47         0             1     2     3     0        2          0
+ 78 smoker           48         0             1     2     3     0        2          0
+ 79 smoker           49         0             1     2     3     0        2          0
+ 80 smoker           50         0             1     2     3     0        2          0
+ 81 smoker           51         0             1     2     3     0        2          0
+ 82 smoker           52         0             1     2     3     0        2          0
+ 83 smoker           53         0             1     2     3     0        2          0
+ 84 smoker           54         0             1     2     3     0        2          0
+ 85 smoker           55         0             1     2     3     0        2          0
+ 86 smoker           56         0             1     2     3     0        2          0
+ 87 smoker           57         0             1     2     3     0        2          0
+ 88 smoker           58         0             1     2     3     0        2          0
+ 89 smoker           59         0             1     2     3     0        2          0
+ 90 smoker           60         0             1     2     3     0        2          0
+ 91 smoker           61         0             1     2     3     0        2          0
+ 92 smoker           62         0             1     2     3     0        2          0
+ 93 smoker           63         0             1     2     3     0        2          0
+ 94 smoker           64         0             1     2     3     0        2          0
+ 95 region           18         0             1     9     9     0        2          0
+ 96 region           19         0             1     9     9     0        3          0
+ 97 region           20         0             1     9     9     0        4          0
+ 98 region           21         0             1     9     9     0        4          0
+ 99 region           22         0             1     9     9     0        4          0
+100 region           23         0             1     9     9     0        4          0
+101 region           24         0             1     9     9     0        4          0
+102 region           25         0             1     9     9     0        4          0
+103 region           26         0             1     9     9     0        4          0
+104 region           27         0             1     9     9     0        4          0
+105 region           28         0             1     9     9     0        4          0
+106 region           29         0             1     9     9     0        4          0
+107 region           30         0             1     9     9     0        4          0
+108 region           31         0             1     9     9     0        4          0
+109 region           32         0             1     9     9     0        4          0
+110 region           33         0             1     9     9     0        4          0
+111 region           34         0             1     9     9     0        4          0
+112 region           35         0             1     9     9     0        4          0
+113 region           36         0             1     9     9     0        4          0
+114 region           37         0             1     9     9     0        4          0
+115 region           38         0             1     9     9     0        4          0
+116 region           39         0             1     9     9     0        4          0
+117 region           40         0             1     9     9     0        4          0
+118 region           41         0             1     9     9     0        4          0
+119 region           42         0             1     9     9     0        4          0
+120 region           43         0             1     9     9     0        4          0
+121 region           44         0             1     9     9     0        4          0
+122 region           45         0             1     9     9     0        4          0
+123 region           46         0             1     9     9     0        4          0
+124 region           47         0             1     9     9     0        4          0
+125 region           48         0             1     9     9     0        4          0
+126 region           49         0             1     9     9     0        4          0
+127 region           50         0             1     9     9     0        4          0
+128 region           51         0             1     9     9     0        4          0
+129 region           52         0             1     9     9     0        4          0
+130 region           53         0             1     9     9     0        4          0
+131 region           54         0             1     9     9     0        4          0
+132 region           55         0             1     9     9     0        4          0
+133 region           56         0             1     9     9     0        4          0
+134 region           57         0             1     9     9     0        4          0
+135 region           58         0             1     9     9     0        4          0
+136 region           59         0             1     9     9     0        4          0
+137 region           60         0             1     9     9     0        4          0
+138 region           61         0             1     9     9     0        4          0
+139 region           62         0             1     9     9     0        4          0
+140 region           63         0             1     9     9     0        4          0
+141 region           64         0             1     9     9     0        4          0
+
+-- Variable type: numeric -----------------------------------------------------------------------------------------------
+# A tibble: 141 x 12
+    skim_variable   age n_missing complete_rate      mean        sd      p0      p25     p50      p75    p100 hist 
+  * <chr>         <int>     <int>         <dbl>     <dbl>     <dbl>   <dbl>    <dbl>   <dbl>    <dbl>   <dbl> <chr>
+  1 bmi              18         0             1    31.3       6.97     16.0    26.2     31.4    36.8     53.1 ?????
+  2 bmi              19         0             1    28.6       5.86     17.5    24.6     28.5    32.6     44.9 ?????
+  3 bmi              20         0             1    30.6       4.63     21.8    28.0     30.7    33       40.5 ?????
+  4 bmi              21         0             1    28.2       6.33     16.8    23.0     26.9    33.9     39.5 ?????
+  5 bmi              22         0             1    31.1       6.96     20.0    27.0     30.7    35       52.6 ?????
+  6 bmi              23         0             1    31.5       7.30     17.4    27.1     32.1    35.0     50.4 ?????
+  7 bmi              24         0             1    29.1       4.89     20.5    25.7     28.9    32.2     40.2 ?????
+  8 bmi              25         0             1    29.7       6.13     20.8    25.6     28.1    33.4     45.5 ?????
+  9 bmi              26         0             1    29.4       6.88     17.2    26.2     29.6    32.6     46.5 ?????
+ 10 bmi              27         0             1    29.3       6.48     18.0    24.6     30.4    32.6     45.9 ?????
+ 11 bmi              28         0             1    29.5       5.40     17.3    25.4     29.1    33.5     38.1 ?????
+ 12 bmi              29         0             1    29.4       5.34     20.2    25.8     29.6    32.7     38.9 ?????
+ 13 bmi              30         0             1    30.6       6.61     20.0    24.9     28.7    35.4     44.2 ?????
+ 14 bmi              31         0             1    29.9       5.00     20.4    26.3     29.3    32.7     39.5 ?????
+ 15 bmi              32         0             1    31.6       6.57     17.8    28.9     30.4    34.9     46.5 ?????
+ 16 bmi              33         0             1    31.2       7.20     18.5    25.3     31.6    35.8     42.9 ?????
+ 17 bmi              34         0             1    30.3       6.09     19      26.5     29.7    34.1     42.9 ?????
+ 18 bmi              35         0             1    31.4       6.04     17.9    27.6     31      35.8     43.3 ?????
+ 19 bmi              36         0             1    29.4       4.67     19.9    26.9     29.0    31.5     41.9 ?????
+ 20 bmi              37         0             1    31.2       6.82     17.3    27.7     30.8    34.2     47.6 ?????
+ 21 bmi              38         0             1    29.0       6.87     16.8    27.3     28.3    34.7     40.6 ?????
+ 22 bmi              39         0             1    29.9       6.81     18.3    24.5     29.6    34.1     45.4 ?????
+ 23 bmi              40         0             1    30.1       5.77     19.8    25.9     29.6    32.9     41.7 ?????
+ 24 bmi              41         0             1    31.5       4.37     21.8    29.2     32.2    33.9     40.3 ?????
+ 25 bmi              42         0             1    30.3       5.37     23.4    26.1     29      35.0     41.3 ?????
+ 26 bmi              43         0             1    30.2       5.95     20.0    25.8     30.1    34.8     46.2 ?????
+ 27 bmi              44         0             1    30.8       6.21     20.2    26.1     30.2    36.7     43.9 ?????
+ 28 bmi              45         0             1    29.8       5.59     20.4    25.2     30.2    33.7     40.0 ?????
+ 29 bmi              46         0             1    31.3       7.04     19.9    26.6     30.5    34.6     48.1 ?????
+ 30 bmi              47         0             1    30.7       6.70     19.2    26.1     29.5    36       47.5 ?????
+ 31 bmi              48         0             1    31.9       4.72     22.8    28.9     31.4    35.6     41.2 ?????
+ 32 bmi              49         0             1    30.3       5.65     21.3    25.8     30.1    33.7     42.7 ?????
+ 33 bmi              50         0             1    31.1       5.94     23.5    27.1     30.1    32.3     46.1 ?????
+ 34 bmi              51         0             1    31.7       6.88     18.0    25.4     33.9    37       42.9 ?????
+ 35 bmi              52         0             1    32.9       7.17     18.3    27.4     32.8    37.4     47.7 ?????
+ 36 bmi              53         0             1    30.4       5.91     20.9    26.0     30.0    35.9     41.5 ?????
+ 37 bmi              54         0             1    31.2       6.55     21.0    27.1     31.0    33.0     47.4 ?????
+ 38 bmi              55         0             1    32.0       4.43     21.5    29.7     32.5    34.9     40.8 ?????
+ 39 bmi              56         0             1    31.6       5.80     20.0    26.8     32.2    35.5     41.9 ?????
+ 40 bmi              57         0             1    30.8       6.97     18.3    26.3     30.2    34.2     43.7 ?????
+ 41 bmi              58         0             1    32.7       6.02     22.8    28.6     33.0    36.1     49.1 ?????
+ 42 bmi              59         0             1    30.6       4.76     23.7    26.7     29.7    34.8     41.1 ?????
+ 43 bmi              60         0             1    30.3       5.75     18.3    25.8     29.6    34.1     40.9 ?????
+ 44 bmi              61         0             1    32.5       6.14     21.1    28.7     33.3    36.2     44   ?????
+ 45 bmi              62         0             1    32.3       5.03     21.4    30.0     32.0    37.1     39.9 ?????
+ 46 bmi              63         0             1    31.9       6.00     21.7    27.4     32.2    36.5     41.5 ?????
+ 47 bmi              64         0             1    33.0       5.76     23.0    27.7     33.8    38.1     40.5 ?????
+ 48 children         18         0             1     0.449     0.883     0       0        0       1        4   ?????
+ 49 children         19         0             1     0.426     0.886     0       0        0       1        5   ?????
+ 50 children         20         0             1     0.862     1.41      0       0        0       1        5   ?????
+ 51 children         21         0             1     0.786     1.10      0       0        0       1.25     4   ?????
+ 52 children         22         0             1     0.714     1.12      0       0        0       1        3   ?????
+ 53 children         23         0             1     1         1.12      0       0        1       2        3   ?????
+ 54 children         24         0             1     0.464     1.10      0       0        0       0        4   ?????
+ 55 children         25         0             1     1.29      1.49      0       0        1       2        5   ?????
+ 56 children         26         0             1     1.07      1.05      0       0        1       2        4   ?????
+ 57 children         27         0             1     0.964     1.17      0       0        0.5     2        3   ?????
+ 58 children         28         0             1     1.29      1.27      0       0        1       2        5   ?????
+ 59 children         29         0             1     1.26      1.13      0       0        1       2        4   ?????
+ 60 children         30         0             1     1.56      1.12      0       1        1       3        3   ?????
+ 61 children         31         0             1     1.41      1.28      0       0        1       2        5   ?????
+ 62 children         32         0             1     1.27      1.12      0       0.25     1       2        4   ?????
+ 63 children         33         0             1     1.54      1.53      0       0        1       2        5   ?????
+ 64 children         34         0             1     1.15      0.967     0       0.25     1       2        3   ?????
+ 65 children         35         0             1     1.68      1.03      0       1        1       2        4   ?????
+ 66 children         36         0             1     1.24      1.3       0       0        1       2        4   ?????
+ 67 children         37         0             1     1.52      1.19      0       0        2       2        4   ?????
+ 68 children         38         0             1     1.48      0.963     0       1        1       2        3   ?????
+ 69 children         39         0             1     2.2       1.63      0       1        2       3        5   ?????
+ 70 children         40         0             1     1.59      1.15      0       1        1       2        4   ?????
+ 71 children         41         0             1     1.41      1.15      0       1        1       2        5   ?????
+ 72 children         42         0             1     1         0.920     0       0        1       2        3   ?????
+ 73 children         43         0             1     1.63      1.24      0       1        2       2        5   ?????
+ 74 children         44         0             1     1.22      0.847     0       1        1       2        3   ?????
+ 75 children         45         0             1     1.48      1.27      0       0        2       2        5   ?????
+ 76 children         46         0             1     1.62      1.21      0       1        1       2        5   ?????
+ 77 children         47         0             1     1.38      1.01      0       1        1       2        4   ?????
+ 78 children         48         0             1     1.31      1.34      0       0        1       2        4   ?????
+ 79 children         49         0             1     1.5       1.32      0       0.75     1       2        5   ?????
+ 80 children         50         0             1     1.31      1.17      0       0        1       2        4   ?????
+ 81 children         51         0             1     1.10      1.11      0       0        1       2        4   ?????
+ 82 children         52         0             1     1.48      1.35      0       0        2       2        5   ?????
+ 83 children         53         0             1     1.25      1.17      0       0        1       2        3   ?????
+ 84 children         54         0             1     1.43      1.20      0       0        1       3        3   ?????
+ 85 children         55         0             1     0.962     1.15      0       0        0.5     2        3   ?????
+ 86 children         56         0             1     0.769     1.18      0       0        0       1        4   ?????
+ 87 children         57         0             1     0.615     0.983     0       0        0       1        4   ?????
+ 88 children         58         0             1     0.24      0.597     0       0        0       0        2   ?????
+ 89 children         59         0             1     1.2       1.22      0       0        1       2        3   ?????
+ 90 children         60         0             1     0.348     0.885     0       0        0       0        3   ?????
+ 91 children         61         0             1     0.739     1.21      0       0        0       1        4   ?????
+ 92 children         62         0             1     0.565     0.992     0       0        0       1        3   ?????
+ 93 children         63         0             1     0.565     1.08      0       0        0       0.5      3   ?????
+ 94 children         64         0             1     0.773     1.07      0       0        0       1.75     3   ?????
+ 95 charges          18         0             1  7086.    10198.     1122.   1633.    2198.  11272.   38793.  ?????
+ 96 charges          19         0             1  9748.    12470.     1242.   1640.    2136.  17149.   39723.  ?????
+ 97 charges          20         0             1 10160.    12050.     1392.   1967.    2460.  17085.   38345.  ?????
+ 98 charges          21         0             1  4730.     6168.     1515.   1985.    2254.   3205.   26019.  ?????
+ 99 charges          22         0             1 10013.    14653.     1665.   2155.    2641.   4078.   44501.  ?????
+100 charges          23         0             1 12420.    13421.     1816.   2433.    3595.  19145.   40904.  ?????
+101 charges          24         0             1 10648.    12204.     1970.   2463.    3045.  17508.   38126.  ?????
+102 charges          25         0             1  9838.    11551.     2138.   3160.    3750.  16333.   42112.  ?????
+103 charges          26         0             1  6134.     7766.     2302.   2921.    3389.   3983.   36085.  ?????
+104 charges          27         0             1 12185.    11942.     2484.   3507.    4544.  18263.   39612.  ?????
+105 charges          28         0             1  9069.    11429.     2689.   3487.    4345.   5388.   51195.  ?????
+106 charges          29         0             1 10430.    10680.     2866.   3946.    4906.  16398.   44585.  ?????
+107 charges          30         0             1 12719.    12515.     3554.   4194.    4838.  18865.   40932.  ?????
+108 charges          31         0             1 10197.    13646.     3260.   4187.    4738.   5769.   58571.  ?????
+109 charges          32         0             1  9220.     9347.     3867.   4381.    4672.   6283.   37608.  ?????
+110 charges          33         0             1 12352.    12878.     3704.   4982.    6210.  15683.   55135.  ?????
+111 charges          34         0             1 11614.    11735.     3935.   4919.    5490.  13703.   43944.  ?????
+112 charges          35         0             1 11307.    10700.     4746.   5228.    5837.  19362.   39983.  ?????
+113 charges          36         0             1 12204.    12884.     4400.   5272.    5478.   7244.   43753.  ?????
+114 charges          37         0             1 18020.    15125.     4647.   6314.    6986.  37270.   46114.  ?????
+115 charges          38         0             1  8103.     7329.     5384.   5974.    6456.   6933.   41949.  ?????
+116 charges          39         0             1 11778.     8633.     5650.   6338.    7512.  19023.   40104.  ?????
+117 charges          40         0             1 11772.     9909.     5416.   6499.    7077.  12041.   40003.  ?????
+118 charges          41         0             1  9654.     8860.     5700.   6430.    6876.   7560.   40274.  ?????
+119 charges          42         0             1 13061.    10708.     5967.   7046.    7444.  19740.   43896.  ?????
+120 charges          43         0             1 19267.    13529.     6250.   7584.   18768.  22180.   45863.  ?????
+121 charges          44         0             1 15859.    14395.     6949.   7624.    8023.  16196.   48885.  ?????
+122 charges          45         0             1 14830.    13723.     7223.   7935.    8604.   9789.   62593.  ?????
+123 charges          46         0             1 14343.    12159.     7147.   8334.    8825.   9501.   46151.  ?????
+124 charges          47         0             1 17654.    12208.     8063.   8551.    9716.  24536.   44203.  ?????
+125 charges          48         0             1 14633.    10163.     7790.   8765.    9447.  21224.   45702.  ?????
+126 charges          49         0             1 12696.     7531.     8117.   9134.    9681.  10530.   39728.  ?????
+127 charges          50         0             1 15663.    10939.     8443.   9059.   10107.  19749.   42857.  ?????
+128 charges          51         0             1 15682.    12707.     8782.   9386.    9876.  11437.   47463.  ?????
+129 charges          52         0             1 18256.    12408.     9141.   9991.   11397.  24667.   60021.  ?????
+130 charges          53         0             1 16021.    10096.     9488.  10288.   11157.  20646.   46661.  ?????
+131 charges          54         0             1 18759.    14216.     9850.  10732.   11816.  24703.   63770.  ?????
+132 charges          55         0             1 16165.    10108.    10215.  10793.   11880.  12907.   44424.  ?????
+133 charges          56         0             1 15026.     9204.    10577.  11078.   11658.  12573.   43921.  ?????
+134 charges          57         0             1 16447.     9988.    10959.  11540.   11894.  14102.   48676.  ?????
+135 charges          58         0             1 13879.     7437.    11346.  11744.   11931.  12232.   47496.  ?????
+136 charges          59         0             1 18896.    11171.    11743.  12334.   12929.  21797.   48970.  ?????
+137 charges          60         0             1 21979.    14924.    12143.  12647.   13204.  29592.   52591.  ?????
+138 charges          61         0             1 22024.    12525.    12558.  13136.   13636.  29005.   48518.  ?????
+139 charges          62         0             1 19164.    10320.    12957.  13455.   13845.  21307.   46718.  ?????
+140 charges          63         0             1 19885.    11851.    13391.  13888.   14350.  15363.   48824.  ?????
+141 charges          64         0             1 23276.    13030.    13823.  14399.   15529.  28758.   49578.  ?????
+> #group data by index
+> data %>%
++   dplyr::group_by(age)%>%
++   skim()
+-- Data Summary ------------------------
+                           Values    
+Name                       Piped data
+Number of rows             1338      
+Number of columns          7         
+_______________________              
+Column type frequency:               
+  character                3         
+  numeric                  3         
+________________________             
+Group variables            age       
+
+-- Variable type: character ---------------------------------------------------------------------------------------------
+# A tibble: 141 x 9
+    skim_variable   age n_missing complete_rate   min   max empty n_unique whitespace
+  * <chr>         <int>     <int>         <dbl> <int> <int> <int>    <int>      <int>
+  1 sex              18         0             1     4     6     0        2          0
+  2 sex              19         0             1     4     6     0        2          0
+  3 sex              20         0             1     4     6     0        2          0
+  4 sex              21         0             1     4     6     0        2          0
+  5 sex              22         0             1     4     6     0        2          0
+  6 sex              23         0             1     4     6     0        2          0
+  7 sex              24         0             1     4     6     0        2          0
+  8 sex              25         0             1     4     6     0        2          0
+  9 sex              26         0             1     4     6     0        2          0
+ 10 sex              27         0             1     4     6     0        2          0
+ 11 sex              28         0             1     4     6     0        2          0
+ 12 sex              29         0             1     4     6     0        2          0
+ 13 sex              30         0             1     4     6     0        2          0
+ 14 sex              31         0             1     4     6     0        2          0
+ 15 sex              32         0             1     4     6     0        2          0
+ 16 sex              33         0             1     4     6     0        2          0
+ 17 sex              34         0             1     4     6     0        2          0
+ 18 sex              35         0             1     4     6     0        2          0
+ 19 sex              36         0             1     4     6     0        2          0
+ 20 sex              37         0             1     4     6     0        2          0
+ 21 sex              38         0             1     4     6     0        2          0
+ 22 sex              39         0             1     4     6     0        2          0
+ 23 sex              40         0             1     4     6     0        2          0
+ 24 sex              41         0             1     4     6     0        2          0
+ 25 sex              42         0             1     4     6     0        2          0
+ 26 sex              43         0             1     4     6     0        2          0
+ 27 sex              44         0             1     4     6     0        2          0
+ 28 sex              45         0             1     4     6     0        2          0
+ 29 sex              46         0             1     4     6     0        2          0
+ 30 sex              47         0             1     4     6     0        2          0
+ 31 sex              48         0             1     4     6     0        2          0
+ 32 sex              49         0             1     4     6     0        2          0
+ 33 sex              50         0             1     4     6     0        2          0
+ 34 sex              51         0             1     4     6     0        2          0
+ 35 sex              52         0             1     4     6     0        2          0
+ 36 sex              53         0             1     4     6     0        2          0
+ 37 sex              54         0             1     4     6     0        2          0
+ 38 sex              55         0             1     4     6     0        2          0
+ 39 sex              56         0             1     4     6     0        2          0
+ 40 sex              57         0             1     4     6     0        2          0
+ 41 sex              58         0             1     4     6     0        2          0
+ 42 sex              59         0             1     4     6     0        2          0
+ 43 sex              60         0             1     4     6     0        2          0
+ 44 sex              61         0             1     4     6     0        2          0
+ 45 sex              62         0             1     4     6     0        2          0
+ 46 sex              63         0             1     4     6     0        2          0
+ 47 sex              64         0             1     4     6     0        2          0
+ 48 smoker           18         0             1     2     3     0        2          0
+ 49 smoker           19         0             1     2     3     0        2          0
+ 50 smoker           20         0             1     2     3     0        2          0
+ 51 smoker           21         0             1     2     3     0        2          0
+ 52 smoker           22         0             1     2     3     0        2          0
+ 53 smoker           23         0             1     2     3     0        2          0
+ 54 smoker           24         0             1     2     3     0        2          0
+ 55 smoker           25         0             1     2     3     0        2          0
+ 56 smoker           26         0             1     2     3     0        2          0
+ 57 smoker           27         0             1     2     3     0        2          0
+ 58 smoker           28         0             1     2     3     0        2          0
+ 59 smoker           29         0             1     2     3     0        2          0
+ 60 smoker           30         0             1     2     3     0        2          0
+ 61 smoker           31         0             1     2     3     0        2          0
+ 62 smoker           32         0             1     2     3     0        2          0
+ 63 smoker           33         0             1     2     3     0        2          0
+ 64 smoker           34         0             1     2     3     0        2          0
+ 65 smoker           35         0             1     2     3     0        2          0
+ 66 smoker           36         0             1     2     3     0        2          0
+ 67 smoker           37         0             1     2     3     0        2          0
+ 68 smoker           38         0             1     2     3     0        2          0
+ 69 smoker           39         0             1     2     3     0        2          0
+ 70 smoker           40         0             1     2     3     0        2          0
+ 71 smoker           41         0             1     2     3     0        2          0
+ 72 smoker           42         0             1     2     3     0        2          0
+ 73 smoker           43         0             1     2     3     0        2          0
+ 74 smoker           44         0             1     2     3     0        2          0
+ 75 smoker           45         0             1     2     3     0        2          0
+ 76 smoker           46         0             1     2     3     0        2          0
+ 77 smoker           47         0             1     2     3     0        2          0
+ 78 smoker           48         0             1     2     3     0        2          0
+ 79 smoker           49         0             1     2     3     0        2          0
+ 80 smoker           50         0             1     2     3     0        2          0
+ 81 smoker           51         0             1     2     3     0        2          0
+ 82 smoker           52         0             1     2     3     0        2          0
+ 83 smoker           53         0             1     2     3     0        2          0
+ 84 smoker           54         0             1     2     3     0        2          0
+ 85 smoker           55         0             1     2     3     0        2          0
+ 86 smoker           56         0             1     2     3     0        2          0
+ 87 smoker           57         0             1     2     3     0        2          0
+ 88 smoker           58         0             1     2     3     0        2          0
+ 89 smoker           59         0             1     2     3     0        2          0
+ 90 smoker           60         0             1     2     3     0        2          0
+ 91 smoker           61         0             1     2     3     0        2          0
+ 92 smoker           62         0             1     2     3     0        2          0
+ 93 smoker           63         0             1     2     3     0        2          0
+ 94 smoker           64         0             1     2     3     0        2          0
+ 95 region           18         0             1     9     9     0        2          0
+ 96 region           19         0             1     9     9     0        3          0
+ 97 region           20         0             1     9     9     0        4          0
+ 98 region           21         0             1     9     9     0        4          0
+ 99 region           22         0             1     9     9     0        4          0
+100 region           23         0             1     9     9     0        4          0
+101 region           24         0             1     9     9     0        4          0
+102 region           25         0             1     9     9     0        4          0
+103 region           26         0             1     9     9     0        4          0
+104 region           27         0             1     9     9     0        4          0
+105 region           28         0             1     9     9     0        4          0
+106 region           29         0             1     9     9     0        4          0
+107 region           30         0             1     9     9     0        4          0
+108 region           31         0             1     9     9     0        4          0
+109 region           32         0             1     9     9     0        4          0
+110 region           33         0             1     9     9     0        4          0
+111 region           34         0             1     9     9     0        4          0
+112 region           35         0             1     9     9     0        4          0
+113 region           36         0             1     9     9     0        4          0
+114 region           37         0             1     9     9     0        4          0
+115 region           38         0             1     9     9     0        4          0
+116 region           39         0             1     9     9     0        4          0
+117 region           40         0             1     9     9     0        4          0
+118 region           41         0             1     9     9     0        4          0
+119 region           42         0             1     9     9     0        4          0
+120 region           43         0             1     9     9     0        4          0
+121 region           44         0             1     9     9     0        4          0
+122 region           45         0             1     9     9     0        4          0
+123 region           46         0             1     9     9     0        4          0
+124 region           47         0             1     9     9     0        4          0
+125 region           48         0             1     9     9     0        4          0
+126 region           49         0             1     9     9     0        4          0
+127 region           50         0             1     9     9     0        4          0
+128 region           51         0             1     9     9     0        4          0
+129 region           52         0             1     9     9     0        4          0
+130 region           53         0             1     9     9     0        4          0
+131 region           54         0             1     9     9     0        4          0
+132 region           55         0             1     9     9     0        4          0
+133 region           56         0             1     9     9     0        4          0
+134 region           57         0             1     9     9     0        4          0
+135 region           58         0             1     9     9     0        4          0
+136 region           59         0             1     9     9     0        4          0
+137 region           60         0             1     9     9     0        4          0
+138 region           61         0             1     9     9     0        4          0
+139 region           62         0             1     9     9     0        4          0
+140 region           63         0             1     9     9     0        4          0
+141 region           64         0             1     9     9     0        4          0
+
+-- Variable type: numeric -----------------------------------------------------------------------------------------------
+# A tibble: 141 x 12
+    skim_variable   age n_missing complete_rate      mean        sd      p0      p25     p50      p75    p100 hist 
+  * <chr>         <int>     <int>         <dbl>     <dbl>     <dbl>   <dbl>    <dbl>   <dbl>    <dbl>   <dbl> <chr>
+  1 bmi              18         0             1    31.3       6.97     16.0    26.2     31.4    36.8     53.1 ?????
+  2 bmi              19         0             1    28.6       5.86     17.5    24.6     28.5    32.6     44.9 ?????
+  3 bmi              20         0             1    30.6       4.63     21.8    28.0     30.7    33       40.5 ?????
+  4 bmi              21         0             1    28.2       6.33     16.8    23.0     26.9    33.9     39.5 ?????
+  5 bmi              22         0             1    31.1       6.96     20.0    27.0     30.7    35       52.6 ?????
+  6 bmi              23         0             1    31.5       7.30     17.4    27.1     32.1    35.0     50.4 ?????
+  7 bmi              24         0             1    29.1       4.89     20.5    25.7     28.9    32.2     40.2 ?????
+  8 bmi              25         0             1    29.7       6.13     20.8    25.6     28.1    33.4     45.5 ?????
+  9 bmi              26         0             1    29.4       6.88     17.2    26.2     29.6    32.6     46.5 ?????
+ 10 bmi              27         0             1    29.3       6.48     18.0    24.6     30.4    32.6     45.9 ?????
+ 11 bmi              28         0             1    29.5       5.40     17.3    25.4     29.1    33.5     38.1 ?????
+ 12 bmi              29         0             1    29.4       5.34     20.2    25.8     29.6    32.7     38.9 ?????
+ 13 bmi              30         0             1    30.6       6.61     20.0    24.9     28.7    35.4     44.2 ?????
+ 14 bmi              31         0             1    29.9       5.00     20.4    26.3     29.3    32.7     39.5 ?????
+ 15 bmi              32         0             1    31.6       6.57     17.8    28.9     30.4    34.9     46.5 ?????
+ 16 bmi              33         0             1    31.2       7.20     18.5    25.3     31.6    35.8     42.9 ?????
+ 17 bmi              34         0             1    30.3       6.09     19      26.5     29.7    34.1     42.9 ?????
+ 18 bmi              35         0             1    31.4       6.04     17.9    27.6     31      35.8     43.3 ?????
+ 19 bmi              36         0             1    29.4       4.67     19.9    26.9     29.0    31.5     41.9 ?????
+ 20 bmi              37         0             1    31.2       6.82     17.3    27.7     30.8    34.2     47.6 ?????
+ 21 bmi              38         0             1    29.0       6.87     16.8    27.3     28.3    34.7     40.6 ?????
+ 22 bmi              39         0             1    29.9       6.81     18.3    24.5     29.6    34.1     45.4 ?????
+ 23 bmi              40         0             1    30.1       5.77     19.8    25.9     29.6    32.9     41.7 ?????
+ 24 bmi              41         0             1    31.5       4.37     21.8    29.2     32.2    33.9     40.3 ?????
+ 25 bmi              42         0             1    30.3       5.37     23.4    26.1     29      35.0     41.3 ?????
+ 26 bmi              43         0             1    30.2       5.95     20.0    25.8     30.1    34.8     46.2 ?????
+ 27 bmi              44         0             1    30.8       6.21     20.2    26.1     30.2    36.7     43.9 ?????
+ 28 bmi              45         0             1    29.8       5.59     20.4    25.2     30.2    33.7     40.0 ?????
+ 29 bmi              46         0             1    31.3       7.04     19.9    26.6     30.5    34.6     48.1 ?????
+ 30 bmi              47         0             1    30.7       6.70     19.2    26.1     29.5    36       47.5 ?????
+ 31 bmi              48         0             1    31.9       4.72     22.8    28.9     31.4    35.6     41.2 ?????
+ 32 bmi              49         0             1    30.3       5.65     21.3    25.8     30.1    33.7     42.7 ?????
+ 33 bmi              50         0             1    31.1       5.94     23.5    27.1     30.1    32.3     46.1 ?????
+ 34 bmi              51         0             1    31.7       6.88     18.0    25.4     33.9    37       42.9 ?????
+ 35 bmi              52         0             1    32.9       7.17     18.3    27.4     32.8    37.4     47.7 ?????
+ 36 bmi              53         0             1    30.4       5.91     20.9    26.0     30.0    35.9     41.5 ?????
+ 37 bmi              54         0             1    31.2       6.55     21.0    27.1     31.0    33.0     47.4 ?????
+ 38 bmi              55         0             1    32.0       4.43     21.5    29.7     32.5    34.9     40.8 ?????
+ 39 bmi              56         0             1    31.6       5.80     20.0    26.8     32.2    35.5     41.9 ?????
+ 40 bmi              57         0             1    30.8       6.97     18.3    26.3     30.2    34.2     43.7 ?????
+ 41 bmi              58         0             1    32.7       6.02     22.8    28.6     33.0    36.1     49.1 ?????
+ 42 bmi              59         0             1    30.6       4.76     23.7    26.7     29.7    34.8     41.1 ?????
+ 43 bmi              60         0             1    30.3       5.75     18.3    25.8     29.6    34.1     40.9 ?????
+ 44 bmi              61         0             1    32.5       6.14     21.1    28.7     33.3    36.2     44   ?????
+ 45 bmi              62         0             1    32.3       5.03     21.4    30.0     32.0    37.1     39.9 ?????
+ 46 bmi              63         0             1    31.9       6.00     21.7    27.4     32.2    36.5     41.5 ?????
+ 47 bmi              64         0             1    33.0       5.76     23.0    27.7     33.8    38.1     40.5 ?????
+ 48 children         18         0             1     0.449     0.883     0       0        0       1        4   ?????
+ 49 children         19         0             1     0.426     0.886     0       0        0       1        5   ?????
+ 50 children         20         0             1     0.862     1.41      0       0        0       1        5   ?????
+ 51 children         21         0             1     0.786     1.10      0       0        0       1.25     4   ?????
+ 52 children         22         0             1     0.714     1.12      0       0        0       1        3   ?????
+ 53 children         23         0             1     1         1.12      0       0        1       2        3   ?????
+ 54 children         24         0             1     0.464     1.10      0       0        0       0        4   ?????
+ 55 children         25         0             1     1.29      1.49      0       0        1       2        5   ?????
+ 56 children         26         0             1     1.07      1.05      0       0        1       2        4   ?????
+ 57 children         27         0             1     0.964     1.17      0       0        0.5     2        3   ?????
+ 58 children         28         0             1     1.29      1.27      0       0        1       2        5   ?????
+ 59 children         29         0             1     1.26      1.13      0       0        1       2        4   ?????
+ 60 children         30         0             1     1.56      1.12      0       1        1       3        3   ?????
+ 61 children         31         0             1     1.41      1.28      0       0        1       2        5   ?????
+ 62 children         32         0             1     1.27      1.12      0       0.25     1       2        4   ?????
+ 63 children         33         0             1     1.54      1.53      0       0        1       2        5   ?????
+ 64 children         34         0             1     1.15      0.967     0       0.25     1       2        3   ?????
+ 65 children         35         0             1     1.68      1.03      0       1        1       2        4   ?????
+ 66 children         36         0             1     1.24      1.3       0       0        1       2        4   ?????
+ 67 children         37         0             1     1.52      1.19      0       0        2       2        4   ?????
+ 68 children         38         0             1     1.48      0.963     0       1        1       2        3   ?????
+ 69 children         39         0             1     2.2       1.63      0       1        2       3        5   ?????
+ 70 children         40         0             1     1.59      1.15      0       1        1       2        4   ?????
+ 71 children         41         0             1     1.41      1.15      0       1        1       2        5   ?????
+ 72 children         42         0             1     1         0.920     0       0        1       2        3   ?????
+ 73 children         43         0             1     1.63      1.24      0       1        2       2        5   ?????
+ 74 children         44         0             1     1.22      0.847     0       1        1       2        3   ?????
+ 75 children         45         0             1     1.48      1.27      0       0        2       2        5   ?????
+ 76 children         46         0             1     1.62      1.21      0       1        1       2        5   ?????
+ 77 children         47         0             1     1.38      1.01      0       1        1       2        4   ?????
+ 78 children         48         0             1     1.31      1.34      0       0        1       2        4   ?????
+ 79 children         49         0             1     1.5       1.32      0       0.75     1       2        5   ?????
+ 80 children         50         0             1     1.31      1.17      0       0        1       2        4   ?????
+ 81 children         51         0             1     1.10      1.11      0       0        1       2        4   ?????
+ 82 children         52         0             1     1.48      1.35      0       0        2       2        5   ?????
+ 83 children         53         0             1     1.25      1.17      0       0        1       2        3   ?????
+ 84 children         54         0             1     1.43      1.20      0       0        1       3        3   ?????
+ 85 children         55         0             1     0.962     1.15      0       0        0.5     2        3   ?????
+ 86 children         56         0             1     0.769     1.18      0       0        0       1        4   ?????
+ 87 children         57         0             1     0.615     0.983     0       0        0       1        4   ?????
+ 88 children         58         0             1     0.24      0.597     0       0        0       0        2   ?????
+ 89 children         59         0             1     1.2       1.22      0       0        1       2        3   ?????
+ 90 children         60         0             1     0.348     0.885     0       0        0       0        3   ?????
+ 91 children         61         0             1     0.739     1.21      0       0        0       1        4   ?????
+ 92 children         62         0             1     0.565     0.992     0       0        0       1        3   ?????
+ 93 children         63         0             1     0.565     1.08      0       0        0       0.5      3   ?????
+ 94 children         64         0             1     0.773     1.07      0       0        0       1.75     3   ?????
+ 95 charges          18         0             1  7086.    10198.     1122.   1633.    2198.  11272.   38793.  ?????
+ 96 charges          19         0             1  9748.    12470.     1242.   1640.    2136.  17149.   39723.  ?????
+ 97 charges          20         0             1 10160.    12050.     1392.   1967.    2460.  17085.   38345.  ?????
+ 98 charges          21         0             1  4730.     6168.     1515.   1985.    2254.   3205.   26019.  ?????
+ 99 charges          22         0             1 10013.    14653.     1665.   2155.    2641.   4078.   44501.  ?????
+100 charges          23         0             1 12420.    13421.     1816.   2433.    3595.  19145.   40904.  ?????
+101 charges          24         0             1 10648.    12204.     1970.   2463.    3045.  17508.   38126.  ?????
+102 charges          25         0             1  9838.    11551.     2138.   3160.    3750.  16333.   42112.  ?????
+103 charges          26         0             1  6134.     7766.     2302.   2921.    3389.   3983.   36085.  ?????
+104 charges          27         0             1 12185.    11942.     2484.   3507.    4544.  18263.   39612.  ?????
+105 charges          28         0             1  9069.    11429.     2689.   3487.    4345.   5388.   51195.  ?????
+106 charges          29         0             1 10430.    10680.     2866.   3946.    4906.  16398.   44585.  ?????
+107 charges          30         0             1 12719.    12515.     3554.   4194.    4838.  18865.   40932.  ?????
+108 charges          31         0             1 10197.    13646.     3260.   4187.    4738.   5769.   58571.  ?????
+109 charges          32         0             1  9220.     9347.     3867.   4381.    4672.   6283.   37608.  ?????
+110 charges          33         0             1 12352.    12878.     3704.   4982.    6210.  15683.   55135.  ?????
+111 charges          34         0             1 11614.    11735.     3935.   4919.    5490.  13703.   43944.  ?????
+112 charges          35         0             1 11307.    10700.     4746.   5228.    5837.  19362.   39983.  ?????
+113 charges          36         0             1 12204.    12884.     4400.   5272.    5478.   7244.   43753.  ?????
+114 charges          37         0             1 18020.    15125.     4647.   6314.    6986.  37270.   46114.  ?????
+115 charges          38         0             1  8103.     7329.     5384.   5974.    6456.   6933.   41949.  ?????
+116 charges          39         0             1 11778.     8633.     5650.   6338.    7512.  19023.   40104.  ?????
+117 charges          40         0             1 11772.     9909.     5416.   6499.    7077.  12041.   40003.  ?????
+118 charges          41         0             1  9654.     8860.     5700.   6430.    6876.   7560.   40274.  ?????
+119 charges          42         0             1 13061.    10708.     5967.   7046.    7444.  19740.   43896.  ?????
+120 charges          43         0             1 19267.    13529.     6250.   7584.   18768.  22180.   45863.  ?????
+121 charges          44         0             1 15859.    14395.     6949.   7624.    8023.  16196.   48885.  ?????
+122 charges          45         0             1 14830.    13723.     7223.   7935.    8604.   9789.   62593.  ?????
+123 charges          46         0             1 14343.    12159.     7147.   8334.    8825.   9501.   46151.  ?????
+124 charges          47         0             1 17654.    12208.     8063.   8551.    9716.  24536.   44203.  ?????
+125 charges          48         0             1 14633.    10163.     7790.   8765.    9447.  21224.   45702.  ?????
+126 charges          49         0             1 12696.     7531.     8117.   9134.    9681.  10530.   39728.  ?????
+127 charges          50         0             1 15663.    10939.     8443.   9059.   10107.  19749.   42857.  ?????
+128 charges          51         0             1 15682.    12707.     8782.   9386.    9876.  11437.   47463.  ?????
+129 charges          52         0             1 18256.    12408.     9141.   9991.   11397.  24667.   60021.  ?????
+130 charges          53         0             1 16021.    10096.     9488.  10288.   11157.  20646.   46661.  ?????
+131 charges          54         0             1 18759.    14216.     9850.  10732.   11816.  24703.   63770.  ?????
+132 charges          55         0             1 16165.    10108.    10215.  10793.   11880.  12907.   44424.  ?????
+133 charges          56         0             1 15026.     9204.    10577.  11078.   11658.  12573.   43921.  ?????
+134 charges          57         0             1 16447.     9988.    10959.  11540.   11894.  14102.   48676.  ?????
+135 charges          58         0             1 13879.     7437.    11346.  11744.   11931.  12232.   47496.  ?????
+136 charges          59         0             1 18896.    11171.    11743.  12334.   12929.  21797.   48970.  ?????
+137 charges          60         0             1 21979.    14924.    12143.  12647.   13204.  29592.   52591.  ?????
+138 charges          61         0             1 22024.    12525.    12558.  13136.   13636.  29005.   48518.  ?????
+139 charges          62         0             1 19164.    10320.    12957.  13455.   13845.  21307.   46718.  ?????
+140 charges          63         0             1 19885.    11851.    13391.  13888.   14350.  15363.   48824.  ?????
+141 charges          64         0             1 23276.    13030.    13823.  14399.   15529.  28758.   49578.  ?????
+> #create validation set
+> validation <- createDataPartition(data$age,p=0.50,list=FALSE)
+> validation50 <-data[-validation,]
+> data<-data[validation,]
+> view(data)
+> #input and output
+> x<-data[,2:3]
+> view(x)
+> y<-data[,2]
+> view(y)
+> #plots
+> boxplot(x[,2],main=names(data)[1],ylab="age")
+> boxplot(x[,2],main=names(data)[3],ylab="sex")
+> #for all attribute
+> par (mfrow=c(1,1))
+> for(i in 1:1)
++   boxplot(x[,i],main=names(data)[i])
+Error in x[floor(d)] + x[ceiling(d)] : 
+  non-numeric argument to binary operator
+> library(caret)
+> plot(x)
+Error in plot.window(...) : need finite 'xlim' values
+In addition: Warning messages:
+1: In xy.coords(x, y, xlabel, ylabel, log) : NAs introduced by coercion
+2: In min(x) : no non-missing arguments to min; returning Inf
+3: In max(x) : no non-missing arguments to max; returning -Inf
+> #scatter plot
+> library(caret)
+> featurePlot(x=x,y=y)
+Warning messages:
+1: In order(as.numeric(x)) : NAs introduced by coercion
+2: In diff(as.numeric(x[ord])) : NAs introduced by coercion
+3: In diff(as.numeric(y[ord])) : NAs introduced by coercion
+4: In diff(as.numeric(y[ord])) : NAs introduced by coercion
+5: In (function (x, y, type = "p", groups = NULL, pch = if (is.null(groups)) plot.symbol$pch else superpose.symbol$pch,  :
+  NAs introduced by coercion
+6: In (function (x, y, type = "p", groups = NULL, pch = if (is.null(groups)) plot.symbol$pch else superpose.symbol$pch,  :
+  NAs introduced by coercion
+7: In (function (x, y, type = "p", groups = NULL, pch = if (is.null(groups)) plot.symbol$pch else superpose.symbol$pch,  :
+  NAs introduced by coercion
+> install.packages("ellipse")
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing package into ‘C:/Users/Dell/Documents/R/win-library/4.1’
+(as ‘lib’ is unspecified)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/ellipse_0.4.2.zip'
+Content type 'application/zip' length 72044 bytes (70 KB)
+downloaded 70 KB
+
+package ‘ellipse’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\Dell\AppData\Local\Temp\RtmpOYryML\downloaded_packages
+> library(ellipse)
+
+Attaching package: ‘ellipse’
+
+The following object is masked from ‘package:graphics’:
+
+    pairs
+
+> library(caret)
+> featurePlot(x=x,y=y,plot ="ellipse")
+NULL
+> #box plots
+> library(caret)
+> featurePlot(x=x,y=y,plot="box")
+NULL
+> #density plot
+> scales<-list(x=list(relation="free"),y=list(relation="free"))
+> scales<-list(x=list(relation="free"),y=list(relation="free"))
+> featurePlot(x=x,y=y,plot = "density",scales=scales)
+NULL
+> #barplot
+> counts<-table(data$Age)
+> barplot(counts)
+Error in plot.window(xlim, ylim, log = log, ...) : 
+  need finite 'xlim' values
+In addition: Warning messages:
+1: In min(w.l) : no non-missing arguments to min; returning Inf
+2: In max(w.r) : no non-missing arguments to max; returning -Inf
+3: In min(x) : no non-missing arguments to min; returning Inf
+4: In max(x) : no non-missing arguments to max; returning -Inf
+> barplot(counts,horiz=TRUE)
+Error in plot.window(xlim, ylim, log = log, ...) : 
+  need finite 'xlim' values
+In addition: Warning messages:
+1: In min(x) : no non-missing arguments to min; returning Inf
+2: In max(x) : no non-missing arguments to max; returning -Inf
+3: In min(w.l) : no non-missing arguments to min; returning Inf
+4: In max(w.r) : no non-missing arguments to max; returning -Inf
+> barplot(counts,
++         main="Barplot",xlab="open",legend=rownames(counts),col=c("red","yellow","green"))
+Error in plot.window(xlim, ylim, log = log, ...) : 
+  need finite 'xlim' values
+In addition: Warning messages:
+1: In min(w.l) : no non-missing arguments to min; returning Inf
+2: In max(w.r) : no non-missing arguments to max; returning -Inf
+3: In min(x) : no non-missing arguments to min; returning Inf
+4: In max(x) : no non-missing arguments to max; returning -Inf
+> barplot(counts,
++         main="Barplot",xlab="open",legend=rownames(counts),col=c("red","yellow","green"))
+Error in plot.window(xlim, ylim, log = log, ...) : 
+  need finite 'xlim' values
+In addition: Warning messages:
+1: In min(w.l) : no non-missing arguments to min; returning Inf
+2: In max(w.r) : no non-missing arguments to max; returning -Inf
+3: In min(x) : no non-missing arguments to min; returning Inf
+4: In max(x) : no non-missing arguments to max; returning -Inf
+> #barplot
+> counts<-table(data$age)
+> barplot(counts)
+> barplot(counts,horiz=TRUE)
+> barplot(counts,
++         main="Barplot",xlab="open",legend=rownames(counts),col=c("red","yellow","green"))
+> #boxplot
+> bwplot(~age,data=data,main="boxplots")
+> library("caret")
+> #High
+> bwplot(~age|sex,data=data,main="boxplots")
+> #hisogram
+> install.packages("lattice")
+Error in install.packages : Updating loaded packages
+
+Restarting R session...
+
+> install.packages("lattice")
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing package into ‘C:/Users/Dell/Documents/R/win-library/4.1’
+(as ‘lib’ is unspecified)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/lattice_0.20-44.zip'
+Content type 'application/zip' length 1182219 bytes (1.1 MB)
+downloaded 1.1 MB
+
+package ‘lattice’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\Dell\AppData\Local\Temp\Rtmp8SYCGB\downloaded_packages
+> library(lattice)
+> histogram(~age,data = data,main="histogram")
+> histogram(~bmi,data = data,main="histogram")
+> #scatter
+> xyplot(age~bmi,data=data,main="Scatterplot")
+> #barchart
+> barchart(~age,data=data,main="Barchart")
+> barchart(~bmi,data=data,main="Barchart")
+> #densityplot
+> densityplot(~age,data=data)
+> densityplot(~bmi,data=data)
+> #piechart
+> install.packages("plotrix")
+WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+Installing package into ‘C:/Users/Dell/Documents/R/win-library/4.1’
+(as ‘lib’ is unspecified)
+trying URL 'https://cran.rstudio.com/bin/windows/contrib/4.1/plotrix_3.8-1.zip'
+Content type 'application/zip' length 1138090 bytes (1.1 MB)
+downloaded 1.1 MB
+
+package ‘plotrix’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\Dell\AppData\Local\Temp\Rtmp8SYCGB\downloaded_packages
+> library(plotrix)
+> slices<-c("age")
+> lbls<-c("bmi")
+> pie(slices,labels=lbls,main="Piecharts")
+Error in pie(slices, labels = lbls, main = "Piecharts") : 
+  'x' values must be positive.
+> #ggplot
+> library(ggplot2)
+> library(grid)
+> library(gridExtra)
+Error in library(gridExtra) : there is no package called ‘gridExtra’
+> (plot1<-ggplot(data=data,mapping=aes(x=age,y=bmi))+geom_boxplot())
+Warning message:
+Continuous x aesthetic -- did you forget aes(group=...)? 
+> ggplot(data=data,mapping=aes(x=age,y=bmi))+geom_boxplot(notch = TRUE,outlier.colour = "green",outlier.size = 3)
+Warning message:
+Continuous x aesthetic -- did you forget aes(group=...)? 
+> #modify
+> ggplot(data=data,mapping=aes(x=bmi,y=age,colour=bmi))+geom_point()+facet_grid(~age)
+> 
